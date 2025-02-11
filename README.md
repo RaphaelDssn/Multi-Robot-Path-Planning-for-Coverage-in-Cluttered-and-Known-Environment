@@ -37,13 +37,25 @@ pip install -r requirements.txt
 
 #### Install
 ```
-git clone
+git clone https://github.com/RaphaelDssn/Multi-Robot-Path-Planning-for-Coverage-in-Cluttered-and-Known-Environment.git
 ```
 
 
 ## Usage
 
+Run following in a terminal: 
 
+```
+python3 main.py
+```
+
+
+| Option          | Description                                            | Default Value |
+|-----------------|--------------------------------------------------------|---------------|
+| `-h, --help`    | Show help message and exit                             | N/A           |
+| `-cell`         | Cell dimension (side length) [in meters]               | `0.5`         |
+| `-robot_radius` | Robot radius [in meters]                               | `0.1`         |
+| `-MaxIter`      | Covering factor: Maximum number of iterations for DARP | `2000`        |
 
 
 ## References

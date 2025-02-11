@@ -25,7 +25,7 @@ from tabulate import tabulate
 
 from utils import *
 from map import Map
-from darp import DARP
+from darp_extended import DARP
 import coverage_planner
 
 class DARP_coverage():

@@ -61,7 +61,7 @@ def inverse_binary_map_as_uint8(BinaryMap):
     return np.logical_not(BinaryMap).astype(np.uint8)
 
 @njit(fastmath=True)
-def euclidian_distance_points2d(array1: np.array, array2: np.array) -> np.float_:
+def euclidian_distance_points2d(array1: np.array, array2: np.array) -> np.float64:
     # this runs much faster than the (numba) np.linalg.norm and is totally enough for our purpose
     return (
                    ((array1[0] - array2[0]) ** 2) +
