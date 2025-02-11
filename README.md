@@ -16,29 +16,31 @@ This project is based on [1] and [2]
 
 ## Installations
 
+#### Install
+```
+git clone https://github.com/RaphaelDssn/Multi-Robot-Path-Planning-for-Coverage-in-Cluttered-and-Known-Environment.git
+```
+
+
 #### Requirements
 
 This project was created using following library versions:
 
 * Python3 (3.12.3)
 
-* numpy (1.26.0)
+* numpy (2.1.3)
 * tabulate (0.9.0)
-* matplotlib (3.9.2)
-* shapely (2.0.6)
-* pygame (2.0.1)
-* scikit-learn (1.5.2)
-* numba (0.60.0)
+* matplotlib (3.10.0)
+* shapely (2.0.7)
+* pygame (2.6.1)
+* scikit-learn (1.6.1)
+* numba (0.61.0)
 
 Install the requirements using:
 ```
 pip install -r requirements.txt
 ```
 
-#### Install
-```
-git clone https://github.com/RaphaelDssn/Multi-Robot-Path-Planning-for-Coverage-in-Cluttered-and-Known-Environment.git
-```
 
 
 ## Usage
@@ -46,10 +48,13 @@ git clone https://github.com/RaphaelDssn/Multi-Robot-Path-Planning-for-Coverage-
 Run following in a terminal: 
 
 ```
+cd Multi-Robot-Path-Planning-for-Coverage-in-Cluttered-and-Known-Environment
 python3 main.py
 ```
 
-<div style="text-align: center;">
+Following options are available:
+
+<div style="text-align: left;">
   <table style="width: auto; margin-left: auto; margin-right: auto;">
     <tr>
       <th>Option</th>
