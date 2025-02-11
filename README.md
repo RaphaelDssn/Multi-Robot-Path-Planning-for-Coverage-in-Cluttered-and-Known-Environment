@@ -49,13 +49,33 @@ Run following in a terminal:
 python3 main.py
 ```
 
-
-| Option          | Description                                            | Default Value |
-|-----------------|--------------------------------------------------------|---------------|
-| `-h, --help`    | Show help message and exit                             | N/A           |
-| `-cell`         | Cell dimension (side length) [in meters]               | `0.5`         |
-| `-robot_radius` | Robot radius [in meters]                               | `0.1`         |
-| `-MaxIter`      | Covering factor: Maximum number of iterations for DARP | `2000`        |
+<table style="width:100%; text-align:center;">
+  <tr>
+    <th>Option</th>
+    <th>Description</th>
+    <th>Default Value</th>
+  </tr>
+  <tr>
+    <td><code>-h, --help</code></td>
+    <td>Show help message and exit</td>
+    <td>N/A</td>
+  </tr>
+  <tr>
+    <td><code>-cell</code></td>
+    <td>Cell dimension (side length) [in meters]</td>
+    <td><code>0.5</code></td>
+  </tr>
+  <tr>
+    <td><code>-robot_radius</code></td>
+    <td>Robot radius [in meters]</td>
+    <td><code>0.1</code></td>
+  </tr>
+  <tr>
+    <td><code>-MaxIter</code></td>
+    <td>Maximum number of iterations for DARP</td>
+    <td><code>2000</code></td>
+  </tr>
+</table>
 
 
 ## References
