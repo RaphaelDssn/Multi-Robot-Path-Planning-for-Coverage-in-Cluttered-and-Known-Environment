@@ -101,11 +101,25 @@ Following options are available:
 
 ## References
 
+Only used Github Repositories are cited here. See the report for a complete bibliography.
 
 [1] Alice-St. Alice-st/darp. https://github.com/alice-st/DARP, n.d. Accessed: 21 December 2024.
 
 [2] Rodriguesrenato. Rodriguesrenato/coverage-path-planning: A coverage path planning algorithm that combines multiple search algorithms to find a full coverage trajectory with the lowest cost. https://github.com/rodriguesrenato/coverage-path-planning, n.d. Accessed: 21 December 2024.
 
 
-## Cite as
+## License
 
+As [1] is covered under the [Creative Commons Attribution-NonCommercial 4.0 International License](http://creativecommons.org/licenses/by-nc/4.0/) and [2] is covered under the MIT License, this is also covered by the [Creative Commons Attribution-NonCommercial 4.0 International License](http://creativecommons.org/licenses/by-nc/4.0/).
+
+## Cite as
+```
+@techreport{mCPP_cluttered,
+  author      = {Raphaël Dousson},
+  title       = {Multi-Robot Path Planning for Coverage in Cluttered and Known Environment},
+  year        = {2024},
+  type        = {Semester Project},
+  institution = {Sycamore Lab, EPFL},
+  note        = {Supervised by Kai Ren and Prof. Maryam Kamgarpour}
+}
+```
