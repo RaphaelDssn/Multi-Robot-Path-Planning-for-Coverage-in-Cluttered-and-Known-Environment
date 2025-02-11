@@ -2,16 +2,29 @@
 
 ## Motivation
 
-
+DARP [1] divides in an iterative manner the areas based on the robots initial positions on a known environment to compute a single robot spanning tree coverage (STC) on each subarea. This approach does not suit cluttered environment as STC requires cell subdivision and DARP does not take obstacles into account in the distance metrics.
 
 
 ## Previous Work
 
-This project is based on [1] and [2]
+DARP was extended to A* DARP to take the obstacles into account, replacing the euclidean distance by the A* path length as distance metric between two cells.
+
+An &epsilon;* based greedy single robot coverage path planner (CPP) [2] was developped. It does not require cell subdivision and is used to replace the STC initially used by DARP and A* DARP.
 
 
 ## Contribution
 
+### Environment
+
+The environment is considered as cluttered if narrow passages have the same width as the length of a grid cell. This grid cell length represents the work area of the robot and can be different than its actual footprint.
+
+The environment is represented by a grid but each cell has connected cells list, because two free neighbour cells are not necessary connected (they can be separated by a thin obstacle). 
+
+
+### Multi-robot coverage
+
+
+A* DARP and &epsilon;* based CPP are extended 
 
 
 ## Installations
