@@ -1,0 +1,7 @@
+numpy
+tabulate
+matplotlib
+shapely
+pygame
+scikit-learn
+numba
