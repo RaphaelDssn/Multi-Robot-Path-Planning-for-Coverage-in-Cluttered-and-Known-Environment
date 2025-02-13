@@ -770,6 +770,7 @@ def gini(array):
     """
     Calculate the Gini coefficient of a numpy array.
     Source: https://github.com/oliviaguest/gini/
+    Creative Common: CC0-1.0 license
     """
     # based on bottom eq:
     # http://www.statsdirect.com/help/generatedimages/equations/equation154.svg
