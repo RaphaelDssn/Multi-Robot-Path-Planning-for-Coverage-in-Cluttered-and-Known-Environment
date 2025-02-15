@@ -116,6 +116,7 @@ Following options are available:
   </table>
 </div>
 
+Modify the environment in ```map.py``` and the robot's footprint and workspace diameters and initial position and orientation in ```main.py```in the [config dictionnary](main.py#L308)
 
 
 ## References

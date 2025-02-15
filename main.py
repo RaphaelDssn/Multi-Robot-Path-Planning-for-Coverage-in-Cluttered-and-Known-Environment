@@ -292,16 +292,16 @@ def main(cell_dim, robot_radius, MaxIterDARP):
     # x0s = [[1, 0, np.pi/2], [0.5, 0.5, -np.pi/2], [1.5, 0, -np.pi]]   #all in middle :good with cell size 0.6
     # x0s = [[2.7, 0, np.pi/2], [2.7, 0.52, -np.pi/2], [2.7, -0.5, -np.pi]]    #all right
     # x0s = [[0, -1, np.pi/2], [0.6, 0.2, -np.pi/2], [2.7, -1.3, -np.pi]] # bad init
-    # x0s = [[-0.2, -1, np.pi/2], [0.1, -1.3, -np.pi/2], [0.6, -0.2, -np.pi]]    #all middle down: not working
+    # x0s = [[-0.2, -1, np.pi/2], [0.1, -1.3, -np.pi/2], [0.6, -0.2, -np.pi]]    #all middle down
 
     # x0s = [[0.3, 0.2, np.pi/2], [0.6, 0.2, -np.pi/2], [0.6, -0.2, -np.pi]]   #all in middle :good with cell size 0.5
     # x0s = [[0, -1, np.pi/2], [0.6, -0.2, -np.pi/2], [2.7, -1.1, -np.pi]] # bad init for cell size 0.2
 
     
-    # x0s = [[-0.2, -0.8, np.pi/2], [0.1, -1.3, -np.pi/2], [-0.2, -1.3, np.pi/2], [0.1, -0.8, -np.pi/2], [0.6, -0.2, -np.pi]]    #all middle down: not working
+    # x0s = [[-0.2, -0.8, np.pi/2], [0.1, -1.3, -np.pi/2], [-0.2, -1.3, np.pi/2], [0.1, -0.8, -np.pi/2], [0.6, -0.2, -np.pi]]    #all middle down
     # x0s = [[-2.5, -0.8, np.pi/2], [0.1, -1.3, -np.pi/2], [2.5, 1, -np.pi/2], [0.6, -0.2, -np.pi], [-2.5, 1, -np.pi], [2.5, -1, -np.pi/2]]    #many good init
     # x0s = [[-2.5, -0.8, np.pi/2], [0.1, -1.3, -np.pi/2], [2.5, 1, -np.pi/2], [0.6, -0.2, -np.pi], [-2.5, 1, -np.pi], [2.7, -1, -np.pi/2], [-1, -1, -np.pi/2]]    #many good init
-    # x0s = [[-0.2, -0.8, np.pi/2], [0.2, -1.3, -np.pi/2], [-0.2, -1.3, np.pi/2], [2.5, 1, -np.pi/2], [0.6, -0.2, -np.pi], [-2.5, 1, -np.pi]]    #all middle down: many
+    # x0s = [[-0.2, -0.8, np.pi/2], [0.2, -1.3, -np.pi/2], [-0.2, -1.3, np.pi/2], [2.5, 1, -np.pi/2], [0.6, -0.2, -np.pi], [-2.5, 1, -np.pi]]    #many all middle down
 
 
     # configuration dictionary
@@ -312,18 +312,20 @@ def main(cell_dim, robot_radius, MaxIterDARP):
         'num_agents': len(x0s),
         'vis': True,        # extra visualization
         'astar': True,      # use A* in DARP
-        'cell2real_length': cell_dim,
-        'robot_radius': robot_radius,
+        'cell2real_length': cell_dim,   # robot's workspace in [m]
+        'robot_radius': robot_radius,   # robot's footprint in [m]
         'MaxIterDARP' : MaxIterDARP
     }
 
     # instance of the DARP_coverage class
-    game = DARP_coverage(config)
+    mCPP = DARP_coverage(config)
 
-    # solve the game
-    traj, times = game.solve()
+    # trajectory planning
+    traj, times = mCPP.solve()
     # print(traj)
     # print(times)
+
+    return traj, times
 
 
 if __name__ == "__main__":
