@@ -2,14 +2,14 @@
 
 ## Motivation
 
-DARP [1] divides in an iterative manner the areas based on the robots initial positions on a known environment to compute a single robot spanning tree coverage (STC) on each subarea. This approach does not suit cluttered environment as STC requires cell subdivision and DARP does not take obstacles into account in the distance metrics.
+**DARP** [1] divides in an iterative manner the areas based on the robots initial positions on a known environment to compute a single robot **spanning tree coverage** (STC) on each subarea. This approach does not suit cluttered environment as STC requires cell subdivision and DARP does not take obstacles into account in the distance metrics.
 
 
 ## Previous Work
 
-DARP was extended to A* DARP [2] to take the obstacles into account, replacing the euclidean distance by the A* path length as distance metric between two cells.
+DARP was extended to **A\* DARP** [2] to take the obstacles into account, replacing the euclidean distance by the A* path length as distance metric between two cells.
 
-An &epsilon;* based greedy single robot coverage path planner (CPP) [3] was developped. It does not require cell subdivision and is used to replace the STC initially used by DARP and A* DARP.
+An **&epsilon;\* based greedy single robot coverage path planner** (CPP) [3] was developped. It does not require cell subdivision and is used to replace the STC initially used by DARP and A* DARP.
 
 
 ## Contribution
@@ -18,9 +18,12 @@ The contribution is detailled in the [report](report.pdf).
 
 ### Environment
 
-The environment is considered as cluttered if narrow passages have the same width as the length of a grid cell. This grid cell length represents the work area of the robot and can be different than its actual footprint.
+In this project, the environment is defined as cluttered if it includes narrow passages with a smaller width than the width of a two grid cell (minimal width required for STC). The grid cell length represents the robot’s workspace, which may differ from its actual footprint.
 
-The environment is represented by a grid but each cell has connected cells list, because two free neighbour cells are not necessary connected, as they can be separated by a thin obstacle. The Movement Map below is computed based on the obstacles, robot's footprint and workspace (cell size) diameters. The obstacles are built using the [Shapely python library](https://shapely.readthedocs.io/en/2.0.6/reference/shapely.intersects.html) and can be changed in the ```map.py``` script.
+Although the environment is represented as a grid, each cell maintains a **list of connected neighbors**. Two free neighboring cells may not be connected if a thin obstacle separates them (see image below).
+
+The **Movement Map** is generated based on obstacles, the robot's footprint, and workspace (cell size) diameters. Obstacles are defined using the [Shapely Python library](https://shapely.readthedocs.io/en/2.0.6/reference/shapely.intersects.html) and can be modified in the `map.py` script.
+
 
 <p align="center">
   <img src="images/movement_map.png" alt="Movement Map" width="400">
@@ -31,9 +34,25 @@ The environment is represented by a grid but each cell has connected cells list,
 ### Multi-robot coverage
 
 
-A* DARP and &epsilon;* based CPP are extended to incorporate the introduced Movement Map. To assign a cell to a robot, two terms are computed. The first term ensures a fair work division across the robots, based on the number of cells assigned to each robot and the distance of the cell to the robot's initial position. The second term ensure connected subareas, based on the distance of cells to connected and unconnected cells for a each robot. DARP [1] uses euclidean distance in both terms. The DARP implementation [1] is extended to A* DARP [2] to replace the euclidean distance by A* path length in the first term. We introduce breath first search (BFS) in the second term to take the Movement Map into account.
+#### **A\* DARP Extension**  
+To assign cells to robots, two terms are computed:  
+1. **Fair area division:** Balances assignments based on the number of cells per robot and their distance from the robot’s initial position.  
+2. **Connected subareas:** Penalizes cells close to unconnected assigned cells to ensure all subareas are connected.
 
-&epsilon;* based CPP is a greedy coverage search that minimizes a cost for each new cell. An A* search to find the closest uncovered cell is perform in case of a dead-end (no uncovered neighbor cell and coverage incomplete). The cost is the weighted sum of an action cost penalizing turns and a heuristic. We extended the implementation to take the Movement Map into account. We implemented diagonal motions into the search and the costs and introduced six heuristics in addition to the initial four. Finally, the path planned is selected as the best one (lowest overlapping) among 55 searches (different heuristics and cost weighting). The path is planned for each robot individually.
+In the original DARP [1], both terms use Euclidean distances. We extend the implementation to **A\* DARP** [2], replacing Euclidean distance with **A\* path length** in the area division term and introducing **Breadth-First Search (BFS)** in the connectivity term to account for the Movement Map.
+
+#### **&epsilon;\*-based CPP Extension**  
+The &epsilon;\*-based coverage search [3] is a greedy approach that assigns cells by minimizing a cost function. If a dead-end is reached (no uncovered neighbor and incomplete coverage), an **A\* search** finds the nearest uncovered cell. The cost function combines:  
+- **Action cost:** Penalizes turns.  
+- **Heuristic:** Guides coverage (arbitrary cost).  
+
+We extend the implementation by:
+- Incorporating the **Movement Map** into the searches.
+- Adding **diagonal motions** to the search and cost computations.  
+- Introducing **six new heuristics**, expanding from the original four.
+
+The final path is selected from **55 searches**, each with different heuristics and cost weightings. The chosen path has the **lowest overlapping**, and coverage paths are planned for each robot individually.
+
 
 
 
@@ -47,9 +66,7 @@ git clone https://github.com/RaphaelDssn/Multi-Robot-Path-Planning-for-Coverage-
 
 #### Requirements
 
-This project was created using following library versions:
-
-* Python3 (3.12.3)
+This project was created in Python3 (3.12.3) using following library versions:
 
 * numpy (2.1.3)
 * tabulate (0.9.0)
@@ -141,7 +158,7 @@ python3 plot_heuristic_and_costs.py
 
 ## References
 
-See the [report](report.pdf) for a complete bibliography.
+See the [report](report.pdf) for the complete bibliography.
 
 [1] Alice-St. Alice-st/darp. https://github.com/alice-st/DARP, n.d. Accessed: 21 December 2024.
 
