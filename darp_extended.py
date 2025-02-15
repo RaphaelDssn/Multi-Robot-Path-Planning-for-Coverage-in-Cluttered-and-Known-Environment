@@ -18,7 +18,7 @@ Modifications by Raphaël Dousson, SYCAMORE, EPFL, 2024
 import numpy as np
 import sys
 # import cv2
-from Visualization import darp_area_visualization
+from visualization import darp_area_visualization
 # import time
 import random
 import os
