@@ -14,17 +14,36 @@ An &epsilon;* based greedy single robot coverage path planner (CPP) [2] was deve
 
 ## Contribution
 
+The contribution is detailled in the [report](report.pdf).
+
 ### Environment
 
 The environment is considered as cluttered if narrow passages have the same width as the length of a grid cell. This grid cell length represents the work area of the robot and can be different than its actual footprint.
 
-The environment is represented by a grid but each cell has connected cells list, because two free neighbour cells are not necessary connected (they can be separated by a thin obstacle). 
+The environment is represented by a grid but each cell has connected cells list, because two free neighbour cells are not necessary connected, as they can be separated by a thin obstacle. The Movement Map below is computed based on the obstacles, robot's footprint and workspace diameters. The obstacles are built using the [Shapely python library](https://shapely.readthedocs.io/en/2.0.6/reference/shapely.intersects.html) and can be changed in the ```map.py``` script.
+
+<p align="center">
+  <img src="images/movement_map.png" alt="Movement Map" width="400">
+</p>
+
 
 
 ### Multi-robot coverage
 
 
 A* DARP and &epsilon;* based CPP are extended 
+
+
+
+<p align="center">
+  <img src="images/area_division.png" alt="Area Division" width="400">
+</p>
+
+
+<p align="center">
+  <img src="images/path_planned.png" alt="Path Planned" width="400">
+</p>
+
 
 
 ## Installations
@@ -117,6 +136,7 @@ Only used Github Repositories are cited here. See the report for a complete bibl
 
 This work is therefore also covered by the [Creative Commons Attribution-NonCommercial 4.0 International License](http://creativecommons.org/licenses/by-nc/4.0/).
 
+
 ## Cite as
 ```
 @techreport{mCPP_cluttered,
@@ -125,6 +145,7 @@ This work is therefore also covered by the [Creative Commons Attribution-NonComm
   year        = {2024},
   type        = {Semester Project},
   institution = {Sycamore Lab, EPFL},
+  url         = {https://github.com/RaphaelDssn/Multi-Robot-Path-Planning-for-Coverage-in-Cluttered-and-Known-Environment},
   note        = {Supervised by Kai Ren and Prof. Maryam Kamgarpour}
 }
 ```
