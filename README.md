@@ -51,7 +51,7 @@ We extend the implementation by:
 - Adding **diagonal motions** to the search and cost computations.  
 - Introducing **six new heuristics**, expanding from the original four.
 
-The final path is selected from **55 searches**, each with different heuristics and cost weightings. The chosen path has the **lowest overlapping**, and coverage paths are planned for each robot individually.
+The final path is selected from **55 searches**, each with different heuristics and cost weightings. The chosen path is the one with the **lowest overlapping**. Coverage paths are planned for each robot independently.
 
 
 
