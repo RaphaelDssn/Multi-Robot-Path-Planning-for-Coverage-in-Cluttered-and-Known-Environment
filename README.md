@@ -7,9 +7,9 @@ DARP [1] divides in an iterative manner the areas based on the robots initial po
 
 ## Previous Work
 
-DARP was extended to A* DARP to take the obstacles into account, replacing the euclidean distance by the A* path length as distance metric between two cells.
+DARP was extended to A* DARP [2] to take the obstacles into account, replacing the euclidean distance by the A* path length as distance metric between two cells.
 
-An &epsilon;* based greedy single robot coverage path planner (CPP) [2] was developped. It does not require cell subdivision and is used to replace the STC initially used by DARP and A* DARP.
+An &epsilon;* based greedy single robot coverage path planner (CPP) [3] was developped. It does not require cell subdivision and is used to replace the STC initially used by DARP and A* DARP.
 
 
 ## Contribution
@@ -20,7 +20,7 @@ The contribution is detailled in the [report](report.pdf).
 
 The environment is considered as cluttered if narrow passages have the same width as the length of a grid cell. This grid cell length represents the work area of the robot and can be different than its actual footprint.
 
-The environment is represented by a grid but each cell has connected cells list, because two free neighbour cells are not necessary connected, as they can be separated by a thin obstacle. The Movement Map below is computed based on the obstacles, robot's footprint and workspace diameters. The obstacles are built using the [Shapely python library](https://shapely.readthedocs.io/en/2.0.6/reference/shapely.intersects.html) and can be changed in the ```map.py``` script.
+The environment is represented by a grid but each cell has connected cells list, because two free neighbour cells are not necessary connected, as they can be separated by a thin obstacle. The Movement Map below is computed based on the obstacles, robot's footprint and workspace (cell size) diameters. The obstacles are built using the [Shapely python library](https://shapely.readthedocs.io/en/2.0.6/reference/shapely.intersects.html) and can be changed in the ```map.py``` script.
 
 <p align="center">
   <img src="images/movement_map.png" alt="Movement Map" width="400">
@@ -31,7 +31,7 @@ The environment is represented by a grid but each cell has connected cells list,
 ### Multi-robot coverage
 
 
-A* DARP and &epsilon;* based CPP are extended 
+A* DARP and &epsilon;* based CPP are extended to incorporate the introduced Movement Map. More specifically, DARP [1] is first extended to A* DARP as described 
 
 
 
@@ -116,21 +116,22 @@ Following options are available:
   </table>
 </div>
 
-Modify the environment in ```map.py``` and the robot's footprint and workspace diameters and initial position and orientation in ```main.py```in the [config dictionnary](main.py#L308)
+Modify the environment in ```map.py``` and the cell size, the robot's diameter, initial position and orientation in ```main.py```in the [config dictionnary](main.py#L308).
 
 
 ## References
 
-Only used Github Repositories are cited here. See the report for a complete bibliography.
+See the [report](report.pdf) for a complete bibliography.
 
 [1] Alice-St. Alice-st/darp. https://github.com/alice-st/DARP, n.d. Accessed: 21 December 2024.
 
-[2] Rodriguesrenato. Rodriguesrenato/coverage-path-planning: A coverage path planning algorithm that combines multiple search algorithms to find a full coverage trajectory with the lowest cost. https://github.com/rodriguesrenato/coverage-path-planning, n.d. Accessed: 21 December 2024.
+[2] Yufan Huang, Man Li, and Tao Zhao. A multi-robot coverage path planning algorithm based on improved DARP algorithm, 2023. Available at https://arxiv.org/abs/2304.09741.
+
+[3] Rodriguesrenato. Rodriguesrenato/coverage-path-planning: A coverage path planning algorithm that combines multiple search algorithms to find a full coverage trajectory with the lowest cost. https://github.com/rodriguesrenato/coverage-path-planning, n.d. Accessed: 21 December 2024.
+
 
 
 ## License
-
-
 
 - [1] is covered under the [Creative Commons Attribution-NonCommercial 4.0 International License](http://creativecommons.org/licenses/by-nc/4.0/)
 - [2] is covered under the MIT License
