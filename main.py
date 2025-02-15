@@ -156,7 +156,7 @@ class DARP_coverage():
             cp = coverage_planner.CoveragePlanner(target_map)
             cp.set_debug_level(cp_debug_level)
 
-            orientations = [discretize_angle(self.x0s[idx][2])] #initial robot orientation
+            orientations = [discretize_angle(self.x0s[idx][2])] #initial robot orientation. Can find best orientation among multiple to define here
 
             # Iterate over each orientation with each heuristic
             idx_search = 0
@@ -184,16 +184,14 @@ class DARP_coverage():
                         idx_search += 1
 
             
-            # Sort by number of steps
+            # Sort by number of steps and action cost
             compare_tb.sort(key=lambda x: (x[4], x[5]))
 
-            # # Print the summary of results for the given map
+            # Print the summary of results for the given map
             summary = [row[0:6] for row in compare_tb]
             for row in summary:
-                # Format cost to 2 decimal
-                row[5] = "{:.2f}".format(row[5])
-                # Convert movement index to movement names
-                row[1] = cp.movement_name[row[1]]
+                row[5] = "{:.2f}".format(row[5]) # Format cost to 2 decimal
+                row[1] = cp.movement_name[row[1]] # Convert movement index to movement names
 
             
             compare_tb_headers = ["Heuristic", "Orientation", "action mult", "Found?", "Steps", "Cost"]
@@ -240,7 +238,8 @@ class DARP_coverage():
 
         xs = equalize_sublists_length(xs)
 
-        self.map.plot_map_traj(trajectories=xs, nb_agents=self.num_agents)
+        # self.map.plot_map_traj(trajectories=xs, nb_agents=self.num_agents)
+
         time_list = np.arange(0, int(len(xs[0])*self.dt), self.dt)
         
         return xs, time_list
@@ -310,7 +309,7 @@ def main(cell_dim, robot_radius, MaxIterDARP):
         'dt': 0.02,         # timestep for traj planning
         'x0s': x0s,         # initial positions
         'num_agents': len(x0s),
-        'vis': True,        # extra visualization
+        'vis': True,        # extra visualization for cell iterative assignement
         'astar': True,      # use A* in DARP
         'cell2real_length': cell_dim,   # robot's workspace in [m]
         'robot_radius': robot_radius,   # robot's footprint in [m]

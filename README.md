@@ -68,12 +68,16 @@ pip install -r requirements.txt
 
 ## Usage
 
-Run following in a terminal: 
+### Execution
+
+To run the area divison and path planning, run:
 
 ```
 cd Multi-Robot-Path-Planning-for-Coverage-in-Cluttered-and-Known-Environment
 python3 main.py
 ```
+
+### Output
 
 This execution should produce following area division and path planning:
 
@@ -88,8 +92,7 @@ This execution should produce following area division and path planning:
 </p>
 
 
-
-Following options are available:
+### Options
 
 <div style="text-align: left;">
   <table style="width: auto; margin-left: auto; margin-right: auto;">
@@ -121,8 +124,19 @@ Following options are available:
   </table>
 </div>
 
+### Modifications
 
-Modify the environment in ```map.py``` and the cell size, the robot's diameter, initial position and orientation in ```main.py```in the [config dictionnary](main.py#L308).
+Modify the environment in ```map.py``` and the robot's initial position and orientation in ```main.py```in the [config dictionnary](main.py#L308).
+
+
+### Visualization
+
+To visualize the action cost and the heuristics, run:
+
+```
+python3 plot_heuristic_and_costs.py
+```
+
 
 
 ## References

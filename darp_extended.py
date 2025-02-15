@@ -516,7 +516,7 @@ class DARP:
 
                 iteration += 1
                 tot_iteration += 1
-                if self.visualization and iteration%10 == 0:
+                if self.visualization and iteration%1 == 0: #change iteration modulo for less frequent visualization
                     self.assignment_matrix_visualization.placeCells(self.A, iteration_number=tot_iteration)
                 #     time.sleep(0.2)
 
