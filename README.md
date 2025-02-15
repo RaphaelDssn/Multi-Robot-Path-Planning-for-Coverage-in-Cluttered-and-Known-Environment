@@ -31,18 +31,9 @@ The environment is represented by a grid but each cell has connected cells list,
 ### Multi-robot coverage
 
 
-A* DARP and &epsilon;* based CPP are extended to incorporate the introduced Movement Map. More specifically, DARP [1] is first extended to A* DARP as described 
+A* DARP and &epsilon;* based CPP are extended to incorporate the introduced Movement Map. To assign a cell to a robot, two terms are computed. The first term ensures a fair work division across the robots, based on the number of cells assigned to each robot and the distance of the cell to the robot's initial position. The second term ensure connected subareas, based on the distance of cells to connected and unconnected cells for a each robot. DARP [1] uses euclidean distance in both terms. The DARP implementation [1] is extended to A* DARP [2] to replace the euclidean distance by A* path length in the first term. We introduce breath first search (BFS) in the second term to take the Movement Map into account.
 
-
-
-<p align="center">
-  <img src="images/area_division.png" alt="Area Division" width="400">
-</p>
-
-
-<p align="center">
-  <img src="images/path_planned.png" alt="Path Planned" width="400">
-</p>
+&epsilon;* based CPP is a greedy coverage search that minimizes a cost for each new cell. An A* search to find the closest uncovered cell is perform in case of a dead-end (no uncovered neighbor cell and coverage incomplete). The cost is the weighted sum of an action cost penalizing turns and a heuristic. We extended the implementation to take the Movement Map into account. We implemented diagonal motions into the search and the costs and introduced six heuristics in addition to the initial four. Finally, the path planned is selected as the best one (lowest overlapping) among 55 searches (different heuristics and cost weighting). The path is planned for each robot individually.
 
 
 
@@ -84,6 +75,20 @@ cd Multi-Robot-Path-Planning-for-Coverage-in-Cluttered-and-Known-Environment
 python3 main.py
 ```
 
+This execution should produce following area division and path planning:
+
+
+<p align="center">
+  <img src="images/area_division.png" alt="Area Division" width="400">
+</p>
+
+
+<p align="center">
+  <img src="images/path_planned.png" alt="Path Planned" width="400">
+</p>
+
+
+
 Following options are available:
 
 <div style="text-align: left;">
@@ -116,6 +121,7 @@ Following options are available:
   </table>
 </div>
 
+
 Modify the environment in ```map.py``` and the cell size, the robot's diameter, initial position and orientation in ```main.py```in the [config dictionnary](main.py#L308).
 
 
@@ -134,7 +140,7 @@ See the [report](report.pdf) for a complete bibliography.
 ## License
 
 - [1] is covered under the [Creative Commons Attribution-NonCommercial 4.0 International License](http://creativecommons.org/licenses/by-nc/4.0/)
-- [2] is covered under the MIT License
+- [3] is covered under the MIT License
 
 This work is therefore also covered by the [Creative Commons Attribution-NonCommercial 4.0 International License](http://creativecommons.org/licenses/by-nc/4.0/).
 
