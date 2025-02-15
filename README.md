@@ -4,14 +4,16 @@ Semester Project 2024 at SYCAMORE, EPFL under the supervision of Kai Ren and pro
 
 ## Motivation
 
-**DARP** [1] divides in an iterative manner the areas based on the robots initial positions on a known environment to compute a single robot **spanning tree coverage** (STC) on each subarea. This approach does not suit cluttered environment as STC requires cell subdivision and DARP does not take obstacles into account in the distance metrics.
+**DARP** [1] iteratively divides the environment into subareas based on the robots' initial positions, allowing **spanning tree coverage** (STC) for each robot independently. However, this method is ineffective in cluttered environments because **STC** relies on cell subdivision, which narrow passages can obstruct, and **DARP** fails to account for obstacles in its distance metrics, reducing its efficiency in complex areas.
 
 
 ## Previous Work
 
-DARP was extended to **A\* DARP** [2] to take the obstacles into account, replacing the euclidean distance by the A* path length as distance metric between two cells.
+**A\* DARP** [2] extends **DARP** [1] by incorporating obstacle awareness, replacing Euclidean distance with **A\* path length** as the distance metric between cells.
 
-An **&epsilon;\* based greedy single robot coverage path planner** (CPP) [3] was developped. It does not require cell subdivision and is used to replace the STC initially used by DARP and A* DARP.
+An **&epsilon;\* based greedy single robot coverage path planner** (CPP) [3] was developped. This algorithm does not require cell subdivision, making it more suitable for cluttered environments than STC.
+
+
 
 
 ## Contribution
