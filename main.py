@@ -42,6 +42,7 @@ import numpy as np
 import sys
 import argparse
 from tabulate import tabulate
+import matplotlib.pyplot as plt
 
 from utils import *
 from map import Map
@@ -73,7 +74,7 @@ class DARP_coverage():
 
         # to introduce weighted DARP
         self.nep = False #nep=not equal portions
-        self.portions = []
+        self.portions = []  #portions for weighted DARP, sum needs to be 1
         
 
 
@@ -84,9 +85,17 @@ class DARP_coverage():
         
         compare_tbs = self.solve_coverage_waypoints() # compare_tb: [heuristic, orientation, found?, total_steps, total_cost, trajectory]
         
-        self.map.plot_assignement_map(self.areas)
-        
         xs, time_list = self.solve_trajectory_generation()
+
+        # figures
+        # self.map.plot_map()
+        # self.map.plot_map_init_poses(self.x0s)
+        self.map.plot_assignement_map(self.areas)
+        self.map.plot_navigation_map(self.x_ref, self.x0s_discrete)
+        # self.map.plot_map_traj(trajectories=xs, nb_agents=self.num_agents)
+
+        plt.show()  # plot all figures
+
         return xs, time_list
 
 
@@ -210,7 +219,7 @@ class DARP_coverage():
 
             compare_tbs.append(compare_tb[0])
 
-        trajectory = [
+        self.x_ref = [
             [
                 [wp[0], 
                 wp[1] * self.cell2real_length - self.x_real_len + self.cell2real_length / 2,
@@ -219,10 +228,6 @@ class DARP_coverage():
             ]
             for compare_tb in compare_tbs
         ]
-
-
-        self.map.plot_navigation_map(trajectory, self.x0s_discrete)
-        self.x_ref = trajectory
 
         return compare_tbs
 
@@ -237,8 +242,6 @@ class DARP_coverage():
                 xs[agent_index] = xs[agent_index] + generated_path
 
         xs = equalize_sublists_length(xs)
-
-        # self.map.plot_map_traj(trajectories=xs, nb_agents=self.num_agents)
 
         time_list = np.arange(0, int(len(xs[0])*self.dt), self.dt)
         

@@ -365,7 +365,7 @@ class Map:
         ax.set_title("Movement Map")
         plt.tight_layout()
         plt.pause(1)
-        plt.show(block=False)
+        # plt.show(block=False)
 
 
 
@@ -404,8 +404,11 @@ class Map:
             x = self.map_x_min + j * self.cell_size
             ax.plot([x, x], [self.map_y_min, self.map_y_max], 'gray', linewidth=0.5)
         
+        plt.title("Environment")
+        ax.set_xlabel("X [m]")
+        ax.set_ylabel("Y [m]")
         plt.pause(0.1)
-        plt.show(block=False)
+        # plt.show(block=False)
 
 
     def plot_map_init_poses(self, init_poses):
@@ -444,8 +447,11 @@ class Map:
         for i in range(len(init_poses)):
             ax.plot(init_poses[i][0], init_poses[i][1], 'ro')
 
+        plt.title("Environment with robot's init poses")
+        ax.set_xlabel("X [m]")
+        ax.set_ylabel("Y [m]")
         plt.pause(0.1)
-        plt.show(block=False)
+        # plt.show(block=False)
 
 
 
@@ -487,12 +493,12 @@ class Map:
             y_values = [state[1] for state in trajectories[i]]
             plt.plot(x_values, y_values, self.robot_base_colors[i%len(self.robot_base_colors)], marker = 'o', label=f'Robot {i}', markersize=1, linestyle='None')
 
-        plt.title("Trajectory")
+        plt.title("Trajectories")
         ax.set_xlabel("X [m]")
         ax.set_ylabel("Y [m]")
         plt.legend()
         plt.pause(0.1)
-        plt.show()
+        # plt.show()
 
 
 
@@ -613,7 +619,7 @@ class Map:
         ax.set_ylabel("Y [m]")
         plt.tight_layout()
         plt.pause(0.1)
-        plt.show(block=False)
+        # plt.show(block=False)
 
 
     def plot_assignement_map(self, areas):
@@ -688,7 +694,7 @@ class Map:
         ax.set_ylabel("Y [m]")
         plt.tight_layout()
         plt.pause(0.1)
-        plt.show(block=False)
+        # plt.show(block=False)
 
 
 
