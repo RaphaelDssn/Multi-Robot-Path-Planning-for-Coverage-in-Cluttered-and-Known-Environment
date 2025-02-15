@@ -1,5 +1,7 @@
 # Multi-Robot Path Planning for Coverage in Cluttered and Known Environment
 
+Semester Project 2024 at SYCAMORE, EPFL under the supervision of Kai Ren and prof. Maryam Kamgarpour.
+
 ## Motivation
 
 **DARP** [1] divides in an iterative manner the areas based on the robots initial positions on a known environment to compute a single robot **spanning tree coverage** (STC) on each subarea. This approach does not suit cluttered environment as STC requires cell subdivision and DARP does not take obstacles into account in the distance metrics.
